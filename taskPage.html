@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Ion Icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/CSS/style.css">
+
+</head>
+<body>
+
+    <!-- Nav-Bar Side -->
+<div class="flex">
+
+    <div class="flex min-h-screen w-16 flex-col justify-between border-e bg-slate-900">
+        <div>
+          <div class="inline-flex size-16 items-center justify-center">
+            <span class="grid size-10 place-content-center rounded-lg border  text-sm text-white" id="userName">
+              
+            </span>
+          </div>
+
+          <div class="border-t border-white">
+            <div class="px-2">
+              <div class="py-4">
+                <a
+                  href="index.html"
+                  class="t group relative flex justify-center rounded px-2 py-1.5 text-white"
+                >
+                <ion-icon name="home-outline" class="ion head"></ion-icon>
+      
+                  <span
+                    class="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible"
+                  >
+                    Home
+                  </span>
+                </a>
+              </div>
+      
+              <ul class="space-y-1 border-t border-gray-100 pt-4">
+      
+                <li class="mb-2 ">
+                  <a
+                    onclick="taskPage()"
+                    href="#"
+                    class="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:border hover:text-white"
+                  >
+                    <ion-icon name="clipboard-outline" class="ion"></ion-icon>
+
+      
+                    <span
+                      class="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible"
+                    >
+                      Add Note
+                    </span>
+                  </a>
+                </li>
+      
+                <li>
+                  <a
+                    href="#"
+                    class="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:border hover:text-white"
+                  >
+                    <ion-icon name="person-outline" class="ion"></ion-icon>
+      
+                    <span
+                      class="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible"
+                    >
+                      Dev - Profile
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="w-screen" id="mainBody">
+        <header >
+            <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+              <div class="sm:flex sm:items-center sm:justify-between">
+                <div class="text-center sm:text-left">
+                  <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Add your tasks, <span id="name"></span>  🎉</h1>          
+                  <div class="max-w-lg text-left">
+                        <p class="mt-4 text-gray-500">
+                          Organize tasks, boost productivity, and stay on top of your schedule effortlessly.
+                        </p>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </header>
+      
+          <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+            <form action="#" class="mb-0 mt-8  space-y-4">
+            <div>
+                <label for="taskname" class="sr-only">Task Name</label>
+      
+                <div class="relative">
+                <input
+                    id="inputTaskName"
+                    type="text"
+                    class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-md"
+                    placeholder="Enter Task Name"
+                />
+                </div>
+            </div>
+      
+            <div>
+                <label for="task" class="sr-only">Task Description</label>
+      
+                <div class="relative">
+                <input
+                    id="inputTaskDesc"
+                    type="textarea"
+                    class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-md"
+                    placeholder="Enter Task Description"
+                />
+                </div>
+            </div>
+      
+            <div>
+                <label for="priority" class="sr-only">Task Priority</label>
+      
+                <div class="relative">
+                <input
+                    id="inputTaskPriority"
+                    type="number"
+                    class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-md"
+                    placeholder="Enter Task Priority"
+                />
+                </div>
+            </div>
+      
+            <div class="flex items-center justify-between">
+                <button
+                onclick="addTask()"
+                id="addTaskButton"
+                type="submit"
+                class="inline-block rounded-lg bg-emerald-600 transition hover:bg-emerald-700 px-5 py-3 text-sm font-medium text-white"
+                >
+                Add Task
+                </button>
+            </div>
+            </form>
+          </div>
+      
+          <div class="overflow-x-auto mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+            <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+            <thead class="ltr:text-left rtl:text-right">
+                <tr>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-left">Status</th>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-left"> Task Name</th>
+                <th class="w-2/6 whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-left">Description</th>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-left">Priority</th>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-left">Date</th>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-left">Delete</th>
+                </tr>
+            </thead>
+      
+            <tbody class="divide-y divide-gray-200" id="tbody">
+                <tr>
+                    
+                </tr>
+            </tbody>
+            </table>
+          </div>
+    </div>
+</div>
+
+    
+
+</body>
+
+
+<script src="/JS/script.js"></script>
+<script src="/JS/task.js"></script>
+</html>
